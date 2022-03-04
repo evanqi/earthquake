@@ -17,7 +17,7 @@ defmodule EarthquakeWeb.EarthquakeController do
     |> Enum.into(%{})
     results = EarthquakeRepository.search(search_params)
 
-    json(conn, results)
+    json(conn, %{ data: results })
   end
 
   defp starts_at_param(params) do

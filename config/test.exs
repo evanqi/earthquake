@@ -10,6 +10,7 @@ config :earthquake, Earthquake.Repo,
   password: "postgres",
   hostname: "localhost",
   database: "earthquake_test#{System.get_env("MIX_TEST_PARTITION")}",
+  types: Earthquake.PostgresTypes,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 

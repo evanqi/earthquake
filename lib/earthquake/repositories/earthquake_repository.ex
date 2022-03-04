@@ -50,7 +50,11 @@ defmodule Earthquake.EarthquakeRepository do
             nst: feature["properties"]["nst"],
             dmin: feature["properties"]["dmin"],
             rms: feature["properties"]["rms"],
-            gap: feature["properties"]["gap"],
+            gap: case feature["properties"]["gap"] do
+              x when is_integer(x) -> x / 1
+              x when is_float(x) -> x
+              x -> x
+            end,
             mag_type: feature["properties"]["magType"],
             title: feature["properties"]["title"],
             geom: %Geo.Point{
