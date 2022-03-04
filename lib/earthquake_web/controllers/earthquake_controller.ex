@@ -1,5 +1,4 @@
 require Logger
-require Protocol
 
 defmodule EarthquakeWeb.EarthquakeController do
   use EarthquakeWeb, :controller
