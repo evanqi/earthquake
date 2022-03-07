@@ -29,6 +29,10 @@ config :earthquake, EarthquakeWeb.Endpoint,
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
   ]
 
+config :earthquake, :update_earthquakes,
+  http_client: HTTPoison,
+  url: "https://earthquake.usgs.gov"
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

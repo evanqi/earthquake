@@ -65,7 +65,7 @@ defmodule EarthquakeWeb.EarthquakeController do
   end
 
   defp build_geom(lat, lng) do
-    %Geo.Point{ coordinates: { lat, lng } }
+    %Geo.Point{ coordinates: { lng, lat } }
   end
 
   defp lat_param(params) do

@@ -52,7 +52,8 @@ defmodule Earthquake.MixProject do
       {:quantum, "~> 3.0"},
       {:httpoison, "~> 1.8"},
       {:poison, "~> 4.0"},
-      {:geo_postgis, "~> 3.4.1"}
+      {:geo_postgis, "~> 3.4.1"},
+      {:mox, "~> 1.0.1"}
     ]
   end
 

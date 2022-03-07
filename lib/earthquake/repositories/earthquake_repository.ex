@@ -6,6 +6,7 @@ defmodule Earthquake.EarthquakeRepository do
 
   @miles_to_meters_conversion 1609.34
 
+  # Returns usgs_ids that exist in DB from the given list.
   def get_ids_for(usgs_ids) do
     query = from e in EarthquakeModel,
       where: e.usgs_id in ^usgs_ids,
@@ -13,6 +14,8 @@ defmodule Earthquake.EarthquakeRepository do
     Repo.all(query)
   end
 
+  # Batch inserts earthquake data into DB. Data validation should be more
+  # robust here since we're saving data retrieved from the internet.
   def batch_insert(features) do
     if length(features) != 0 do
       earthquake_models = Enum.map(
@@ -78,6 +81,7 @@ defmodule Earthquake.EarthquakeRepository do
     Repo.all(query)
   end
 
+  # We only add a WHERE clause for search params that were given.
   defp filter_where(params) do
     Enum.reduce(params, dynamic(true), fn
       {:starts_at, value}, dynamic ->

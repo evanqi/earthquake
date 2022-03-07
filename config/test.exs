@@ -21,6 +21,10 @@ config :earthquake, EarthquakeWeb.Endpoint,
   secret_key_base: "4myqHet2vkGtrrAdLZEi7P0rySlxsZcKA4of6EQATa+nirTpijcOKTFDme3kkMAN",
   server: false
 
+config :earthquake, :update_earthquakes,
+  http_client: Earthquake.HTTPClientMock,
+  url: "https://earthquake.usgs.gov"
+
 # In test we don't send emails.
 config :earthquake, Earthquake.Mailer, adapter: Swoosh.Adapters.Test
 
