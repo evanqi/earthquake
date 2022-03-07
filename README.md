@@ -1,6 +1,12 @@
 # Earthquake
 
-To start your Phoenix server:
+## Prerequisites
+
+Follow the [installation guide](https://hexdocs.pm/phoenix/installation.html) to make sure you can run a Phoenix application.
+
+## Running the application
+
+To start the server:
 
   * Install dependencies with `mix deps.get`
   * Create and migrate your database with `mix ecto.setup`

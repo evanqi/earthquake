@@ -59,5 +59,21 @@ defmodule Earthquake.UpdateEarthquakesTest do
 
       assert {:ok, ["ci40028704"]} == UpdateEarthquakes.run(@test_config)
     end
+
+    test "returns error tuple on non-200 response" do
+      expect(@http_client, :get, fn "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson" ->
+        {:ok, %HTTPoison.Response{body: "Not found", status_code: 404}}
+      end)
+
+      assert {:error, ["Response received with status code 404, body: Not found"]} == UpdateEarthquakes.run(@test_config)
+    end
+
+    test "returns error tuple on error response" do
+      expect(@http_client, :get, fn "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson" ->
+        {:error, %{reason: "Something went wrong"}}
+      end)
+
+      assert {:error, ["Error encountered: Something went wrong"]} == UpdateEarthquakes.run(@test_config)
+    end
   end
 end

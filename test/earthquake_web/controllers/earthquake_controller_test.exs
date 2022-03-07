@@ -3,7 +3,7 @@ defmodule EarthquakeWeb.EarthquakeControllerTest do
   alias Earthquake.{EarthquakeFactory, Repo}
 
   describe "index" do
-    test "GET /api/earthquakes", %{conn: conn} do
+    test "GET /api/earthquakes returns earthquake", %{conn: conn} do
       earthquake = EarthquakeFactory.build(:earthquake) |> Repo.insert!
       conn = get(conn, "/api/earthquakes")
       assert json_response(conn, 200)["data"] == [
@@ -23,6 +23,12 @@ defmodule EarthquakeWeb.EarthquakeControllerTest do
           }
         }
       ]
+    end
+
+    test "GET /api/earthquakes returns empty list when filters don't match", %{conn: conn} do
+      earthquake = EarthquakeFactory.build(:distant_earthquake) |> Repo.insert!
+      conn = get(conn, "/api/earthquakes", lng: -122.4726193, lat: 37.7577627, radius: 1)
+      assert json_response(conn, 200)["data"] == []
     end
   end
 end

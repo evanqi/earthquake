@@ -18,9 +18,9 @@ defmodule Earthquake.UpdateEarthquakes do
     do: insert_new_earthquakes(Poison.decode!(body))
 
   defp handle({:ok, %HTTPoison.Response{body: body, status_code: code}}),
-    do: Logger.info("[USGS] Response received with status code #{code}, body: #{body}")
+    do: {:error, ["Response received with status code #{code}, body: #{body}"]}
 
-  defp handle({:error, %{reason: reason}}), do: Logger.error("[USGS] Error encountered: #{reason}")
+  defp handle({:error, %{reason: reason}}), do: {:error, ["Error encountered: #{reason}"]}
 
   # Filters list of earthquake ids for ones that don't currently exist in DB
   # and batch inserts new ones into DB. Performance could be improved by caching
