@@ -28,7 +28,7 @@ defmodule Earthquake.EarthquakeFactory do
       gap: 65.2,
       mag_type: "ml",
       title: "M 1.3 - 20km E of Little Lake, CA",
-      geom: %Geo.Point{ coordinates: { 37.7577627, -122.4726193 } }
+      geom: %Geo.Point{ coordinates: { -122.4726193, 37.7577627 } }
     }
   end
 
