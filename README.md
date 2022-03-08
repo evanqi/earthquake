@@ -14,6 +14,21 @@ To start the server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
+### Earthquakes API
+
+Visit `localhost:4000/api/earthquakes` for the API that searches for earthquakes by the following filters passed in as query parameters:
+* starts_at (int): this will be in epoch time
+* ends_at (int): this will be in epoch time
+* min_mag (float): minimum magnitude
+* max_mag (float): maximum magnitude
+* radius (int): searches for earthquakes within an N mile radius of (lat, lng)
+* lat (float): latitude
+* lng (float): longitude
+
+### Updating the earthquakes database
+
+`Earthquake.UpdateEarthquakes` is a job that runs every minute, checking the USGS API for earthquakes in the last hour and inserting new ones into the database.
+
 ## Tests
 
 Run the test suite with `mix test`
